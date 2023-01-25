@@ -43,16 +43,17 @@ end
 --used by checkWin() function(see below) to check for all possible win positions for both "X" and "O" 
 local function checkMatches(XO)
 
-
+    --check if function is called to check for "X" or "O" peice on board
     if XO == "X" then
-
+        --loops through board to check for horizontal wins
         for i, v in pairs(board) do
 
             if board[i][1] == "X" and board[i][2] == "X" and board[i][3] == "X" then 
                 return "xTrue"
             end
         end
-
+        --end
+        --Checks for vertical wins(not optimized, loop???)
         if board[1][1] == "X" and board[2][1] == "X" and board[3][1] == "X" then
             return "xTrue"
         end
@@ -62,13 +63,15 @@ local function checkMatches(XO)
         if board[1][3] == "X" and board[2][3] == "X" and board[3][3] == "X" then
             return "xTrue"
         end
-
+        -- end
+        --checks for diagonal wins
         if board[1][1] == "X" and board[2][2] == "X" and board[3][3] == "X" then
             return "xTrue"
         end
         if board[1][3] == "X" and board[2][2] == "X" and board[3][1] == "X" then
             return 'xTrue'
         end
+        --end
     else
         for i, v in pairs(board) do
 
@@ -141,7 +144,7 @@ local function playerMove()
         local answer = tonumber(io.read())
 
         
-        
+        --Takes user input and makes it readable by 3d board - row 1
         if answer <= 3 then
             if board[1][answer] ~= "X" and board[1][answer] ~= "O" then
                 board[1][answer] = "X"
@@ -154,6 +157,7 @@ local function playerMove()
                 playerMove()
             end
         end
+        --Takes user input and makes it readable by 3d board - row 2
         if answer <= 6 and answer > 3 then
             if board[2][answer - 3] ~= "X" and board[2][answer - 3] ~= "O" then
                 board[2][answer - 3] = "X"
@@ -166,6 +170,7 @@ local function playerMove()
                 playerMove()
             end
         end
+        --Takes user input and makes it readable by 3d board - row 3
         if answer <= 9 and answer > 6 then
             if board[3][answer - 6] ~= "X" and board[3][answer - 6] ~= "O" then
                 board[3][answer - 6] = "X"
@@ -185,13 +190,6 @@ end
 local function cMove()
 
     if turn == false then
-
-        io.write("Calculating.")
-        io.write("Calculating..")
-        io.write("Calculating...")
-        io.write("\n")
-        
-
         local row = math.random(1, 3)
         local choice = math.random(1, 3)
 
