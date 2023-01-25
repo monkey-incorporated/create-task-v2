@@ -53,6 +53,16 @@ local function checkMatches(XO)
             end
         end
 
+        if board[1][1] == "X" and board[2][1] == "X" and board[3][1] == "X" then
+            return "xTrue"
+        end
+        if board[1][2] == "X" and board[2][2] == "X" and board[3][2] == "X" then
+            return "xTrue"
+        end
+        if board[1][3] == "X" and board[2][3] == "X" and board[3][3] == "X" then
+            return "xTrue"
+        end
+
         if board[1][1] == "X" and board[2][2] == "X" and board[3][3] == "X" then
             return "xTrue"
         end
@@ -63,15 +73,25 @@ local function checkMatches(XO)
         for i, v in pairs(board) do
 
             if board[i][1] == "O" and board[i][2] == "O" and board[i][3] == "O" then 
-                return "otrue"
+                return "oTrue"
             end
         end
 
+        if board[1][1] == "O" and board[2][1] == "O" and board[3][1] == "O" then
+            return "oTrue"
+        end
+        if board[1][2] == "O" and board[2][2] == "O" and board[3][2] == "O" then
+            return "oTrue"
+        end
+        if board[1][3] == "O" and board[2][3] == "O" and board[3][3] == "O" then
+            return "oTrue"
+        end
+
         if board[1][1] == "O" and board[2][2] == "O" and board[3][3] == "O" then
-            return "otrue"
+            return "oTrue"
         end
         if board[1][3] == "O" and board[2][2] == "O" and board[3][1] == "O" then
-            return "otrue"
+            return "oTrue"
         end
 
     end
