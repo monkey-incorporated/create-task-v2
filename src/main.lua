@@ -212,13 +212,37 @@ local function cMove()
     end
 
 end
+
+local function checkTie()
+    local target = 9
+    local counter = 0
+    for i, v in pairs(board) do
+        for j, k in pairs(v) do 
+            if board[i][j] == "X" or board[i][j] == "O" then
+                counter = counter + 1
+            end
+        end
+    end
+
+    if counter == target then
+        
+        io.write("Tie!")
+        io.write("\n")
+        os.exit()
+
+    end
+
+end
+
 --game loop to run all functions and facilitate gameplay
 while run do
     printBoard()
     playerMove()
     checkWin()
+    checkTie()
     cMove()
     checkWin()
+    checkTie()
 
 end
 
