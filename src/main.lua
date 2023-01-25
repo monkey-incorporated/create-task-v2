@@ -213,6 +213,8 @@ local function cMove()
 
 end
 
+
+-- This function is called by the game loop to determine if the game should be ended due to neither player or computer winning
 local function checkTie()
     local target = 9
     local counter = 0
