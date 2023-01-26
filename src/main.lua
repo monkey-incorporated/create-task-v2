@@ -7,6 +7,12 @@ local board = {
     {4, 5, 6},
     {7, 8, 9}
 }
+--template board for computer user interface
+local templateBoard = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+}
 
 --runtime variables
 
@@ -25,7 +31,7 @@ local function printBoard()
         for j, k in pairs(v) do 
             io.write(board[i][j])
             if j == 1 or j == 2 then
-                io.write("|")
+                io.write(" | ")
             else
 
             end
@@ -33,9 +39,10 @@ local function printBoard()
         end
         if i == 1 or i == 2 then
             io.write("\n")
-            io.write("-----")
+            io.write("----------")
             io.write("\n")
         else
+            io.write("\n")
             io.write("\n")
         end
     end
@@ -222,8 +229,9 @@ local function cMove()
 
         if board[row][choice] ~= "X" and board[row][choice] ~= "O" then
             board[row][choice] = "O"
-            
-            io.write("Computer moved!")
+            io.write("\n")
+            io.write("Computer moved to slot: ".. templateBoard[row][choice])
+            io.write("\n")
             io.write("\n")
             turn = true
             
