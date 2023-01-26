@@ -14,6 +14,8 @@ local run = true
 
 local turn = true
 
+local continue = false
+
 
 --function to loop through 3d board and compile a user-friendly visual map of board
 local function printBoard() 
@@ -37,6 +39,18 @@ local function printBoard()
             io.write("\n")
         end
     end
+end
+
+local function resetBoard()
+
+
+    board = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    }
+
+
 end
 
 
@@ -93,15 +107,36 @@ local function checkWin()
     end
 
     if reslut == "xTrue" then
+        
 
         io.write("Player wins!")
-        os.exit()
+        io.write("\n")
+        io.write("1 to restart, 2 to exit")
+        io.flush()
+        local answer = tonumber(io.read())
+        if answer == 1 then
+            continue = true
+        else
+            os.exit()
+
+        end
+
+        
     end
 
     if reslut == "oTrue" then
 
         io.write("Computer wins!")
-        os.exit()
+        io.write("\n")
+        io.write("1 to restart, 2 to exit")
+        io.flush()
+        local answer = tonumber(io.read())
+        if answer == 1 then
+            continue = true
+        else
+            os.exit()
+
+        end
     end
 
 end 
@@ -193,14 +228,24 @@ local function cMove()
 
 end
 --game loop to run all functions and facilitate gameplay
-while run do
+
+local function gameLoop()
     printBoard()
     playerMove()
     checkWin()
+    
     cMove()
     checkWin()
-
+    
 end
+while run do
+    gameLoop()    
+end
+
+
+
+
+
 
 
 
