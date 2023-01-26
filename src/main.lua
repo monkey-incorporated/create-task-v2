@@ -175,7 +175,7 @@ local function playerMove()
         if answer <= 3 then
             if board[1][answer] ~= "X" and board[1][answer] ~= "O" then
                 board[1][answer] = "X"
-                printBoard()
+                
                 turn = false
                 
             else
@@ -188,7 +188,7 @@ local function playerMove()
         if answer <= 6 and answer > 3 then
             if board[2][answer - 3] ~= "X" and board[2][answer - 3] ~= "O" then
                 board[2][answer - 3] = "X"
-                printBoard()
+                
                 turn = false
                 
             else
@@ -201,7 +201,7 @@ local function playerMove()
         if answer <= 9 and answer > 6 then
             if board[3][answer - 6] ~= "X" and board[3][answer - 6] ~= "O" then
                 board[3][answer - 6] = "X"
-                printBoard()
+                
                 turn = false
                 
             else
@@ -222,7 +222,7 @@ local function cMove()
 
         if board[row][choice] ~= "X" and board[row][choice] ~= "O" then
             board[row][choice] = "O"
-            printBoard()
+            
             io.write("Computer moved!")
             io.write("\n")
             turn = true
@@ -259,13 +259,15 @@ local function checkTie()
 
 end
 --game loop to run all functions and facilitate gameplay
-local function gameLoop()
+local function gameLoop() 
     printBoard()
+    
     playerMove()
     checkWin()
     
     cMove()
     checkWin()
+    
     
 end
 --runs gameloop while run condition == true
