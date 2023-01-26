@@ -1,7 +1,7 @@
 --tik tak toe app in terminal
 
 
--- declare 3d board
+-- declare 2d board
 local board = {
     {1, 2, 3},
     {4, 5, 6},
@@ -17,7 +17,7 @@ local turn = true
 local continue = false
 
 
---function to loop through 3d board and compile a user-friendly visual map of board
+--function to loop through 2d board and compile a user-friendly visual map of board
 local function printBoard() 
 
     for i, v in pairs(board) do 
@@ -40,25 +40,22 @@ local function printBoard()
         end
     end
 end
-
+-- not currently used, resets 2d board
 local function resetBoard()
-
-
     board = {
         {1, 2, 3},
         {4, 5, 6},
         {7, 8, 9}
     }
-
-
 end
-
-
---used by checkWin() function(see below) to check for all possible win positions for both "X" and "O" 
+--used by checkWin() function(see below) to check for all possible win positions for both "X" and "O"
+--posible 0.5x optimization to condense "X" and "O" piece into 1 statment
 local function checkMatches(XO)
 
     --check if function is called to check for "X" or "O" peice on board
     if XO == "X" then
+        --this part of the if statment is for "X" piece specifically, refer below for "O" piece
+
         --loops through board to check for horizontal wins
         for i, v in pairs(board) do
 
@@ -78,7 +75,7 @@ local function checkMatches(XO)
             return "xTrue"
         end
         -- end
-        --checks for diagonal wins
+        --checks for diagonal wins(loop probably not necessary)
         if board[1][1] == "X" and board[2][2] == "X" and board[3][3] == "X" then
             return "xTrue"
         end
@@ -87,6 +84,7 @@ local function checkMatches(XO)
         end
         --end
     else
+        --counterpart code for "O" peices, refer above for documentation
         for i, v in pairs(board) do
 
             if board[i][1] == "O" and board[i][2] == "O" and board[i][3] == "O" then 
@@ -115,23 +113,22 @@ local function checkMatches(XO)
 
 
 end
-
-
 -- uses checkMatches() function(see above) to determine a winner. This function is called by the game loop after every computer and player turn
 local function checkWin()
 
     local result = nil
 
     if turn then
+        --becuase turn varible is switched after respective playerMove() and cMove() functions, logic is counterintuitive, must send oppisite of turn
         result = checkMatches("O")
 
     else
-        reslut = checkMatches("X")
+        result = checkMatches("X")
     end
 
-    if reslut == "xTrue" then
+    if result == "xTrue" then
         
-
+        --attempt to make a continuos game, not implemented yet. Would use resetBoard() function
         io.write("Player wins!")
         io.write("\n")
         io.write("1 to restart, 2 to exit")
@@ -147,7 +144,7 @@ local function checkWin()
         
     end
 
-    if reslut == "oTrue" then
+    if result == "oTrue" then
 
         io.write("Computer wins!")
         io.write("\n")
@@ -164,11 +161,6 @@ local function checkWin()
 
 end 
 
-
-
-
-
-
 --function to allow user to move if all criteria is met(must be players turn and must be open spot)
 local function playerMove()
 
@@ -179,7 +171,7 @@ local function playerMove()
         local answer = tonumber(io.read())
 
         
-        --Takes user input and makes it readable by 3d board - row 1
+        --Takes user input and makes it readable by 2d board - row 1
         if answer <= 3 then
             if board[1][answer] ~= "X" and board[1][answer] ~= "O" then
                 board[1][answer] = "X"
@@ -192,7 +184,7 @@ local function playerMove()
                 playerMove()
             end
         end
-        --Takes user input and makes it readable by 3d board - row 2
+        --Takes user input and makes it readable by 2d board - row 2
         if answer <= 6 and answer > 3 then
             if board[2][answer - 3] ~= "X" and board[2][answer - 3] ~= "O" then
                 board[2][answer - 3] = "X"
@@ -205,7 +197,7 @@ local function playerMove()
                 playerMove()
             end
         end
-        --Takes user input and makes it readable by 3d board - row 3
+        --Takes user input and makes it readable by 2d board - row 3
         if answer <= 9 and answer > 6 then
             if board[3][answer - 6] ~= "X" and board[3][answer - 6] ~= "O" then
                 board[3][answer - 6] = "X"
@@ -245,8 +237,6 @@ local function cMove()
     end
 
 end
-
-
 -- This function is called by the game loop to determine if the game should be ended due to neither player or computer winning
 local function checkTie()
     local target = 9
@@ -268,9 +258,7 @@ local function checkTie()
     end
 
 end
-
 --game loop to run all functions and facilitate gameplay
-
 local function gameLoop()
     printBoard()
     playerMove()
@@ -280,6 +268,7 @@ local function gameLoop()
     checkWin()
     
 end
+--runs gameloop while run condition == true
 while run do
     gameLoop()    
 end
