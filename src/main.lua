@@ -275,7 +275,6 @@ local function gameLoop()
     printBoard()
     playerMove()
     checkWin()
-<<<<<<< HEAD
     
     cMove()
     checkWin()
@@ -283,13 +282,6 @@ local function gameLoop()
 end
 while run do
     gameLoop()    
-=======
-    checkTie()
-    cMove()
-    checkWin()
-    checkTie()
-
->>>>>>> f246828cf999f5e04980688713140bafddd2aff5
 end
 
 
