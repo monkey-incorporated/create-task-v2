@@ -179,6 +179,7 @@ local function playerMove()
 
         
         --Takes user input and makes it readable by 2d board - row 1
+        --possible to do this by looping through board and seeing if slot text matches answer
         if answer <= 3 then
             if board[1][answer] ~= "X" and board[1][answer] ~= "O" then
                 board[1][answer] = "X"
@@ -267,6 +268,9 @@ local function checkTie()
 
 end
 --game loop to run all functions and facilitate gameplay
+
+
+
 local function gameLoop() 
     printBoard()
     
