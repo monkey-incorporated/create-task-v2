@@ -1,4 +1,4 @@
---tik tak toe app in terminal
+--tik tac toe app in terminal
 
 
 -- declare 2d board
@@ -135,7 +135,7 @@ local function checkWin()
 
     if result == "xTrue" then
         
-        --attempt to make a continuos game, not implemented yet. Would use resetBoard() function
+        --feeble attempt to make a continuous game, needs work. Uses resetBoard() function (but only resets once for some reason???)
         io.write("\n")
         io.write("Player wins!")
         io.write("\n")
@@ -144,8 +144,9 @@ local function checkWin()
         io.flush()
         local answer = tonumber(io.read())
         if answer == 1 then
+            resetBoard()
             continue = true
-        else
+        else            
             os.exit()
 
         end
@@ -162,6 +163,7 @@ local function checkWin()
         io.flush()
         local answer = tonumber(io.read())
         if answer == 1 then
+            resetBoard()
             continue = true
         else
             os.exit()
@@ -263,7 +265,7 @@ local function checkTie()
 
     if counter == target then
         
-        io.write("Tie!")
+        io.write("Cat's game!")
         io.write("\n")
         os.exit()
 
@@ -287,7 +289,7 @@ local function gameLoop()
 end
 --runs gameloop while run condition == true
 while run do
-    gameLoop()    
+    gameLoop()     
 end
 
 
