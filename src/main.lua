@@ -136,14 +136,16 @@ local function checkWin()
     if result == "xTrue" then
         
         --attempt to make a continuos game, not implemented yet. Would use resetBoard() function
+        --I fix becos brain is huge
         io.write("\n")
         io.write("Player wins!")
         io.write("\n")
         io.write("\n")
-        io.write("1 to restart, 2 to exit")
+        io.write("1 to restart, 2 to exit: ")
         io.flush()
         local answer = tonumber(io.read())
         if answer == 1 then
+            resetBoard()
             continue = true
         else
             os.exit()
@@ -158,10 +160,11 @@ local function checkWin()
         io.write("Computer wins!")
         io.write("\n")
         io.write("\n")
-        io.write("1 to restart, 2 to exit")
+        io.write("1 to restart, 2 to exit: ")
         io.flush()
         local answer = tonumber(io.read())
         if answer == 1 then
+            resetBoard()
             continue = true
         else
             os.exit()
